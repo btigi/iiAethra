@@ -11,56 +11,61 @@ namespace iiAethra
             using var br = new BinaryReader(fs);
             while (fs.Position < fs.Length)
             {
-                var record = new Item();
-                record.Id = br.ReadInt16();
-                var cost = br.ReadBytes(6);
-                record.Cost = Utils.Real48Convert(cost);
-                record.ChargesRemaining = br.ReadByte();
-                var unidentifiedNameLength = br.ReadByte();
-                var unidentifiedName = br.ReadBytes(16);
-                record.UnidentifiedName = Encoding.UTF8.GetString(unidentifiedName.Take(unidentifiedNameLength).ToArray());
-                var identifiedNameLength = br.ReadByte();
-                var identifiedName = br.ReadBytes(16);
-                record.IdentifiedName = Encoding.UTF8.GetString(identifiedName.Take(identifiedNameLength).ToArray());
-                record.UseResult1 = br.ReadByte();
-                record.UseResult2 = br.ReadByte();
-                record.ExtraMovement = br.ReadByte();
-                record.ExtraShots = br.ReadByte();
-                record.Defence = br.ReadByte();
-                record.ExtraSpellPoints = br.ReadByte();
-                record.PickLock = br.ReadByte();
-                record.DisarmTraps = br.ReadByte();
-                record.DeadlyStrike = br.ReadByte();
-                record.Trading = br.ReadByte();
-                record.ReadRunes = br.ReadByte();
-                record.UnarmedCombat = br.ReadByte();
-                record.HandheldArms = br.ReadByte();
-                record.Bows = br.ReadByte();
-                record.ItemIdentification = br.ReadByte();
-                record.ExtraHits = br.ReadByte();
-                record.ExtraSwings = br.ReadByte();
-                record.MaxDamage = br.ReadByte();
-                record.MinDamage = br.ReadByte();
-                record.UseClass = br.ReadByte();
-                record.Race = br.ReadByte();
-                record.BodySlot = br.ReadByte();
-                record.Class = br.ReadByte();
-                record.MythicLore = br.ReadByte();
-                record.WoodsLore = br.ReadByte();
-                record.Mountaineering = br.ReadByte();
-                record.DetectTraps = br.ReadByte();
-                record.Perception = br.ReadByte();
-                record.Cursed = br.ReadByte();
-                record.Equipable = br.ReadByte();
-                record.FireResistance = br.ReadByte();
-                record.ColdResistance = br.ReadByte();
-                record.WaterResistance = br.ReadByte();
-                record.MindResistance = br.ReadByte();
-                record.ShockResistance = br.ReadByte();
-
+                var record = ReadItem(br);
                 result.Add(record);
             }
             return result;
+        }
+
+        public Item ReadItem(BinaryReader br)
+        {
+            var record = new Item();
+            record.Id = br.ReadInt16();
+            var cost = br.ReadBytes(6);
+            record.Cost = Utils.Real48Convert(cost);
+            record.ChargesRemaining = br.ReadByte();
+            var unidentifiedNameLength = br.ReadByte();
+            var unidentifiedName = br.ReadBytes(16);
+            record.UnidentifiedName = Encoding.UTF8.GetString(unidentifiedName.Take(unidentifiedNameLength).ToArray());
+            var identifiedNameLength = br.ReadByte();
+            var identifiedName = br.ReadBytes(16);
+            record.IdentifiedName = Encoding.UTF8.GetString(identifiedName.Take(identifiedNameLength).ToArray());
+            record.UseResult1 = br.ReadByte();
+            record.UseResult2 = br.ReadByte();
+            record.ExtraMovement = br.ReadByte();
+            record.ExtraShots = br.ReadByte();
+            record.Defence = br.ReadByte();
+            record.ExtraSpellPoints = br.ReadByte();
+            record.PickLock = br.ReadByte();
+            record.DisarmTraps = br.ReadByte();
+            record.DeadlyStrike = br.ReadByte();
+            record.Trading = br.ReadByte();
+            record.ReadRunes = br.ReadByte();
+            record.UnarmedCombat = br.ReadByte();
+            record.HandheldArms = br.ReadByte();
+            record.Bows = br.ReadByte();
+            record.ItemIdentification = br.ReadByte();
+            record.ExtraHits = br.ReadByte();
+            record.ExtraSwings = br.ReadByte();
+            record.MaxDamage = br.ReadByte();
+            record.MinDamage = br.ReadByte();
+            record.UseClass = br.ReadByte();
+            record.Race = br.ReadByte();
+            record.BodySlot = br.ReadByte();
+            record.Class = br.ReadByte();
+            record.MythicLore = br.ReadByte();
+            record.WoodsLore = br.ReadByte();
+            record.Mountaineering = br.ReadByte();
+            record.DetectTraps = br.ReadByte();
+            record.Perception = br.ReadByte();
+            record.Cursed = br.ReadByte();
+            record.Equipable = br.ReadByte();
+            record.FireResistance = br.ReadByte();
+            record.ColdResistance = br.ReadByte();
+            record.WaterResistance = br.ReadByte();
+            record.MindResistance = br.ReadByte();
+            record.ShockResistance = br.ReadByte();
+            return record;
         }
     }
 
@@ -68,7 +73,7 @@ namespace iiAethra
     {
         public Int16 Id { get; set; }
         public double Cost { get; set; }
-        public byte ChargesRemaining { get; set; }        
+        public byte ChargesRemaining { get; set; }
         public string UnidentifiedName { get; set; } = string.Empty;
         public string IdentifiedName { get; set; } = string.Empty;
         public byte UseResult1 { get; set; }
