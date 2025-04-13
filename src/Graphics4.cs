@@ -13,11 +13,9 @@ namespace iiAethra
             "#FC5454", "#FCA8A8", "#FCFC00", "#FCFCFC"
         ];
 
-        public List<Image> Read(string filename)
+        public List<Image> Read(string filename, int imageWidth, int imageHeight)
         {
-            const int imageWidth = 60;
-            const int imageHeight = 60;
-            const int bytesPerRow = imageWidth / 2; // Each byte encodes two pixels
+            var bytesPerRow = imageWidth / 2; // Each byte encodes two pixels
 
             var result = new List<Image>();
             using var fs = new FileStream(filename, FileMode.Open, FileAccess.Read);
