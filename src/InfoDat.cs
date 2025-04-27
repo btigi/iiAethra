@@ -32,6 +32,28 @@ namespace iiAethra
             }
             return result;
         }
+
+        public void Write(List<InfoDatRecord> records, string filename)
+        {
+            const int MaxTextLength = 38;
+
+            using var fs = new FileStream(filename, FileMode.Create, FileAccess.Write);
+            using var bw = new BinaryWriter(fs);
+            foreach (var record in records)
+            {
+                var titleBytes = Encoding.UTF8.GetBytes(record.Title);
+                bw.Write((byte)titleBytes.Length);
+                bw.Write(titleBytes.Concat(new byte[MaxTextLength - titleBytes.Length]).ToArray());
+
+                bw.Write((byte)record.Lines.Count);
+                foreach (var line in record.Lines)
+                {
+                    var lineBytes = Encoding.UTF8.GetBytes(line);
+                    bw.Write((byte)lineBytes.Length);
+                    bw.Write(lineBytes.Concat(new byte[MaxTextLength - lineBytes.Length]).ToArray());
+                }
+            }
+        }
     }
 
     public class InfoDatRecord

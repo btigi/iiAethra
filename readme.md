@@ -18,8 +18,8 @@ iiAethra is a C# library supporting the modification of files relating to The Ae
 | GAME.EXE      | ✗   |   ✗   |
 | GAME.OVR      | ✗   |   ✗   |
 | ICONS.PIC     | ✗   |   ✗   | Multiple image sizes
-| INFO1.DAT     | ✔   |   ✗   |
-| INFO2.DAT     | ✔   |   ✗   |
+| INFO1.DAT     | ✔   |   ✔   | Malformed file - writing back the original data fails
+| INFO2.DAT     | ✔   |   ✔   |
 | ITEM.DAT      | ✔   |   ✗   |
 | MAP.RSC       | ✗   |   ✗   |
 | MAPS.PIC      | ✔   |   ✗   |
