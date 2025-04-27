@@ -39,6 +39,37 @@ namespace iiAethra
             return result;
         }
 
+        public void Write(List<EncounterRecord> records, string filename)
+        {
+            const int MaxNameLength = 40;
+
+            using var fs = new FileStream(filename, FileMode.Create, FileAccess.Write);
+            using var bw = new BinaryWriter(fs);
+            foreach (var record in records)
+            {
+                var nameBytes = Encoding.UTF8.GetBytes(record.Name);
+                var paddedName = nameBytes.Concat(new byte[MaxNameLength - nameBytes.Length]).ToArray();
+                bw.Write((byte)nameBytes.Length);
+                bw.Write(paddedName);
+
+                bw.Write(record.MonsterCount);
+
+                bw.Write(record.MonsterId1);
+                bw.Write(record.MonsterId2);
+                bw.Write(record.MonsterId3);
+                bw.Write(record.MonsterId4);
+
+                bw.Write(record.MonsterId1CountMax);
+                bw.Write(record.MonsterId2CountMax);
+                bw.Write(record.MonsterId3CountMax);
+                bw.Write(record.MonsterId4CountMax);
+
+                bw.Write(record.MonsterId1CountMin);
+                bw.Write(record.MonsterId2CountMin);
+                bw.Write(record.MonsterId3CountMin);
+                bw.Write(record.MonsterId4CountMin);
+            }
+        }
     }
 
     public class EncounterRecord

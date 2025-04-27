@@ -12,7 +12,7 @@ iiAethra is a C# library supporting the modification of files relating to The Ae
 | CHARPIC.DAT   | ✔   |   ✗   |
 | D1.RSC        | ✗   |   ✗   |
 | DRAGONS.PIC   | ✔   |   ✗   |
-| ENCNTER.DAT   | ✔   |   ✗   |
+| ENCNTER.DAT   | ✔   |   ✔   |
 | FLOOR.PIC     | ✔   |   ✗   |
 | FRONTS.PIC    | ✔   |   ✗   |
 | GAME.EXE      | ✗   |   ✗   |
