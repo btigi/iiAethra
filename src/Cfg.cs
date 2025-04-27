@@ -27,6 +27,34 @@ namespace iiAethra
 
             return cfg;
         }
+
+        public bool Write(CfgFile cfg, string filename)
+        {
+            try
+            {
+                using var fs = new FileStream(filename, FileMode.Create, FileAccess.Write);
+                using var bw = new BinaryWriter(fs);
+
+                bw.Write(cfg.Unknown);
+                bw.Write(cfg.MusicStatus);
+                bw.Write(cfg.SoundStatus);
+
+                foreach (var saveGameStatus in cfg.SaveGameStatus)
+                {
+                    var nameBytes = Encoding.UTF8.GetBytes(saveGameStatus.SaveGameName);
+                    bw.Write((byte)nameBytes.Length);
+                    var paddedNameBytes = nameBytes.Concat(new byte[20 - nameBytes.Length]).ToArray();
+                    bw.Write(paddedNameBytes);
+                    bw.Write(saveGameStatus.Unknown);
+                }
+
+                return true;
+            }
+            catch
+            {
+                return false;
+            }
+        }
     }
 
     public class CfgFile

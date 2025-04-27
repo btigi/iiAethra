@@ -6,7 +6,7 @@ iiAethra is a C# library supporting the modification of files relating to The Ae
 
 | Name          | Read | Write | Comment |
 |---------------|:----:|-------|:--------|
-| AETHRA.CFG    | ✔   |   ✗   |
+| AETHRA.CFG    | ✔   |   ✔   |
 | C1.RSC        | ✗   |   ✗   |
 | C2.RSC        | ✗   |   ✗   |
 | CHARPIC.DAT   | ✔   |   ✗   |
