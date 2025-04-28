@@ -20,7 +20,7 @@ iiAethra is a C# library supporting the modification of files relating to The Ae
 | ICONS.PIC     | ✗   |   ✗   | Multiple image sizes
 | INFO1.DAT     | ✔   |   ✔   | Malformed file - writing back the original data fails
 | INFO2.DAT     | ✔   |   ✔   |
-| ITEM.DAT      | ✔   |   ✗   |
+| ITEM.DAT      | ✔   |   ✔   |
 | MAP.RSC       | ✗   |   ✗   |
 | MAPS.PIC      | ✔   |   ✗   |
 | MONPIC.PIC    | ✗   |   ✗   | Multiple image sizes
@@ -41,7 +41,7 @@ iiAethra is a C# library supporting the modification of files relating to The Ae
 | TASKDESC.DAT  | ✗   |   ✗   | Malformed file
 | TREE.DAT      | ✗   |   ✗   | Malformed file
 
-
+Note: Real48 round-tripping is currently inaccurate.
 
 
 ## Download
