@@ -24,7 +24,7 @@ iiAethra is a C# library supporting the modification of files relating to The Ae
 | MAP.RSC       | ✗   |   ✗   |
 | MAPS.PIC      | ✔   |   ✗   |
 | MONPIC.PIC    | ✗   |   ✗   | Multiple image sizes
-| NMONSTER.DAT  | ✔   |   ✗   |
+| NMONSTER.DAT  | ✔   |   ✔   |
 | OPEN.PPC      | ✔   |   ✗   |
 | PARCH.PIC     | ✔   |   ✗   |
 | PARTY.DAT     | ✔   |   ✗   |
