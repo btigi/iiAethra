@@ -42,9 +42,9 @@ namespace iiAethra
                 record.InventoryItemCount = br.ReadByte();
                 record.Unknown4 = br.ReadByte();
                 var experience = br.ReadBytes(6);
-                record.Experience = Utils.Real48Convert(experience);
+                record.Experience = Utils.ConvertFromReal48(experience);
                 var gold = br.ReadBytes(6);
-                record.Gold = Utils.Real48Convert(gold);
+                record.Gold = Utils.ConvertFromReal48(gold);
                 record.Unknown5 = br.ReadInt16();
                 record.PickLocks = br.ReadInt16();
                 record.DisarmTraps = br.ReadInt16();

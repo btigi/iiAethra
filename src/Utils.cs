@@ -2,7 +2,7 @@
 {
     public static class Utils
     {
-        public static double Real48Convert(byte[] real48)
+        public static double ConvertFromReal48(byte[] real48)
         {
             // real48[0] == 0 is represents the value 0.
             if (real48[0] == 0)
@@ -41,5 +41,52 @@
 
             return (mantissa) * Math.Pow(2.0, exponent);
         }
+
+        public static byte[] ConvertToReal48(double value)
+        {
+            // Handle zero case  
+            if (value == 0.0)
+                return new byte[6];
+
+            byte[] real48 = new byte[6];
+
+            // Determine the sign and make the value positive if negative  
+            bool isNegative = value < 0;
+            if (isNegative)
+                value = -value;
+
+            // Extract the exponent and normalize the value  
+            int exponent = (int)Math.Floor(Math.Log(value, 2));
+            double mantissa = value / Math.Pow(2.0, exponent);
+
+            // Adjust the exponent to the offset base (129)  
+            exponent += 129;
+            real48[0] = (byte)exponent;
+
+            // Remove the implicit leading 1 from the mantissa  
+            mantissa -= 1.0;
+
+            // Encode the mantissa into the remaining bytes  
+            for (int i = 1; i <= 5; i++)
+            {
+                int startbit = (i == 5) ? 6 : 7;
+                for (int j = startbit; j >= 0; j--)
+                {
+                    mantissa *= 2;
+                    if (mantissa >= 1.0)
+                    {
+                        real48[i] |= (byte)(1 << j);
+                        mantissa -= 1.0;
+                    }
+                }
+            }
+
+            // Set the sign bit if the value is negative  
+            if (isNegative)
+                real48[5] |= 0x80;
+
+            return real48;
+        }
+
     }
 }

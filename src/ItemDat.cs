@@ -22,7 +22,7 @@ namespace iiAethra
             var record = new Item();
             record.Id = br.ReadInt16();
             var cost = br.ReadBytes(6);
-            record.Cost = Utils.Real48Convert(cost);
+            record.Cost = Utils.ConvertFromReal48(cost);
             record.ChargesRemaining = br.ReadByte();
             var unidentifiedNameLength = br.ReadByte();
             var unidentifiedName = br.ReadBytes(16);
@@ -67,6 +67,70 @@ namespace iiAethra
             record.ShockResistance = br.ReadByte();
             return record;
         }
+
+        public void Write(List<Item> items, string filename)
+        {
+            using var fs = new FileStream(filename, FileMode.Create, FileAccess.Write);
+            using var bw = new BinaryWriter(fs);
+            foreach (var item in items)
+            {
+                WriteItem(bw, item);
+            }
+        }
+
+        private void WriteItem(BinaryWriter bw, Item item)
+        {
+            bw.Write(item.Id);
+            bw.Write(Utils.ConvertToReal48(item.Cost));
+            bw.Write(item.ChargesRemaining);
+
+            var unidentifiedNameBytes = Encoding.UTF8.GetBytes(item.UnidentifiedName);
+            Array.Resize(ref unidentifiedNameBytes, 16);
+            bw.Write((byte)item.UnidentifiedName.Length);
+            bw.Write(unidentifiedNameBytes);
+
+            var identifiedNameBytes = Encoding.UTF8.GetBytes(item.IdentifiedName);
+            Array.Resize(ref identifiedNameBytes, 16);
+            bw.Write((byte)item.IdentifiedName.Length);
+            bw.Write(identifiedNameBytes);
+
+            bw.Write(item.UseResult1);
+            bw.Write(item.UseResult2);
+            bw.Write(item.ExtraMovement);
+            bw.Write(item.ExtraShots);
+            bw.Write(item.Defence);
+            bw.Write(item.ExtraSpellPoints);
+            bw.Write(item.PickLock);
+            bw.Write(item.DisarmTraps);
+            bw.Write(item.DeadlyStrike);
+            bw.Write(item.Trading);
+            bw.Write(item.ReadRunes);
+            bw.Write(item.UnarmedCombat);
+            bw.Write(item.HandheldArms);
+            bw.Write(item.Bows);
+            bw.Write(item.ItemIdentification);
+            bw.Write(item.ExtraHits);
+            bw.Write(item.ExtraSwings);
+            bw.Write(item.MaxDamage);
+            bw.Write(item.MinDamage);
+            bw.Write(item.UseClass);
+            bw.Write(item.Race);
+            bw.Write(item.BodySlot);
+            bw.Write(item.Class);
+            bw.Write(item.MythicLore);
+            bw.Write(item.WoodsLore);
+            bw.Write(item.Mountaineering);
+            bw.Write(item.DetectTraps);
+            bw.Write(item.Perception);
+            bw.Write(item.Cursed);
+            bw.Write(item.Equipable);
+            bw.Write(item.FireResistance);
+            bw.Write(item.ColdResistance);
+            bw.Write(item.WaterResistance);
+            bw.Write(item.MindResistance);
+            bw.Write(item.ShockResistance);
+        }
+
     }
 
     public class Item

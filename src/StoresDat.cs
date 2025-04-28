@@ -34,7 +34,7 @@ namespace iiAethra
                 {
                     var item = record.Items.ElementAt(i);
                     var cost = br.ReadBytes(6);
-                    item.Cost = Utils.Real48Convert(cost);
+                    item.Cost = Utils.ConvertFromReal48(cost);
                 }
 
                 for (int i = 0; i < 50; i++)
