@@ -127,6 +127,125 @@ namespace iiAethra
             }
             return result;
         }
+
+        public void Write(List<PartyMemberRecord> partyMembers, string filename)
+        {
+            const int MaxPartyMemberNameLength = 15;
+            const int MaxPartyMemberRaceLength = 15;
+            const int MaxPartyMemberLevelDescriptionLength = 15;
+
+            var itemWriter = new ItemDat();
+
+            using var fs = new FileStream(filename, FileMode.Create, FileAccess.Write);
+            using var bw = new BinaryWriter(fs);
+
+            foreach (var record in partyMembers)
+            {
+                var nameBytes = Encoding.UTF8.GetBytes(record.Name.PadRight(MaxPartyMemberNameLength, '\0'));
+                bw.Write((byte)record.Name.Length);
+                bw.Write(nameBytes);
+
+                var raceBytes = Encoding.UTF8.GetBytes(record.Race.PadRight(MaxPartyMemberRaceLength, '\0'));
+                bw.Write((byte)record.Race.Length);
+                bw.Write(raceBytes);
+
+                var levelDescriptionBytes = Encoding.UTF8.GetBytes(record.LevelDescription.PadRight(MaxPartyMemberLevelDescriptionLength, '\0'));
+                bw.Write((byte)record.LevelDescription.Length);
+                bw.Write(levelDescriptionBytes);
+
+                bw.Write(record.ActiveStatus);
+                bw.Write(record.Level);
+                bw.Write(record.Unknown);
+                bw.Write(record.Class);
+                bw.Write(record.Unknown2);
+                bw.Write(record.WeaponSwings);
+                bw.Write(record.BowShots);
+                bw.Write(record.Unknown3);
+                bw.Write(record.Movement);
+                bw.Write(record.InventoryItemCount);
+                bw.Write(record.Unknown4);
+                bw.Write(Utils.ConvertToReal48(record.Experience));
+                bw.Write(Utils.ConvertToReal48(record.Gold));
+                bw.Write(record.Unknown5);
+                bw.Write(record.PickLocks);
+                bw.Write(record.DisarmTraps);
+                bw.Write(record.DeadlyStrike);
+                bw.Write(record.Trading);
+                bw.Write(record.ReadRunes);
+                bw.Write(record.UnarmedCombat);
+                bw.Write(record.HandheldArms);
+                bw.Write(record.Bows);
+                bw.Write(record.Identify);
+                bw.Write(record.Defence);
+                bw.Write(record.HitPointMax);
+                bw.Write(record.Damage);
+                bw.Write(record.SpellPointsMax);
+                bw.Write(record.SpellPoints);
+                bw.Write(record.Strength);
+                bw.Write(record.Agility);
+                bw.Write(record.Constitution);
+                bw.Write(record.Intelligence);
+                bw.Write(record.Wisdom);
+                bw.Write(record.Presence);
+                bw.Write(record.Memory);
+                bw.Write(record.Reason);
+                bw.Write(record.Unknown6);
+                bw.Write(record.StrengthStatBonus);
+                bw.Write(record.AgilityStatBonus);
+                bw.Write(record.ConstitutionStatBonus);
+                bw.Write(record.IntelligenceStatBonus);
+                bw.Write(record.WisdomStatBonus);
+                bw.Write(record.PresenceStatBonus);
+                bw.Write(record.MemoryStatBonus);
+                bw.Write(record.ReasonStatBonus);
+                bw.Write(record.StrengthTotalStatBonus);
+                bw.Write(record.AgilityTotalStatBonus);
+                bw.Write(record.ConstitutionTotalStatBonus);
+                bw.Write(record.IntelligenceTotalStatBonus);
+                bw.Write(record.WisdomTotalStatBonus);
+                bw.Write(record.PresenceTotalStatBonus);
+                bw.Write(record.MemoryTotalStatBonus);
+                bw.Write(record.ReasonTotalStatBonus);
+                bw.Write(record.Unknown7);
+
+                foreach (var item in record.Items)
+                {
+                    itemWriter.WriteItem(bw, item);
+                }
+
+                bw.Write(record.ItemEquipped);
+                bw.Write(record.ItemIdentified);
+                bw.Write(record.FireResistence);
+                bw.Write(record.ColdResistence);
+                bw.Write(record.WaterResistence);
+                bw.Write(record.MindResistence);
+                bw.Write(record.ShockResistence);
+                bw.Write(record.DetectTraps);
+                bw.Write(record.Perception);
+                bw.Write(record.MythicLore);
+                bw.Write(record.SpellList);
+                bw.Write(record.WoodLore);
+                bw.Write(record.Mountaineering);
+                bw.Write(record.Portrait);
+                bw.Write(record.Unknown8);
+                bw.Write(record.BookOfFaith);
+                bw.Write(record.BookOfInvocation);
+                bw.Write(record.BookOfRedemption);
+                bw.Write(record.BookOfUniversalArcanum);
+                bw.Write(record.ElementalDiscipline);
+                bw.Write(record.DisciplineOfChronmetry);
+                bw.Write(record.DisciplineOfTransmogrification);
+                bw.Write(record.DisciplineOfSorcery);
+                bw.Write(record.DisciplineOfMentalAcuity);
+                bw.Write(record.DisciplineOfConjuration);
+                bw.Write(record.SylvanMagick);
+                bw.Write(record.PathOfTheAshikari);
+                bw.Write(record.TheSwordOfRighteousness);
+                bw.Write(record.SongsOfTheMinstrel);
+                bw.Write(record.Unknown9);
+            }
+        }
+
     }
 
     public class PartyMemberRecord

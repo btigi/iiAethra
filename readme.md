@@ -27,7 +27,7 @@ iiAethra is a C# library supporting the modification of files relating to The Ae
 | NMONSTER.DAT  | ✔   |   ✔   |
 | OPEN.PPC      | ✔   |   ✗   |
 | PARCH.PIC     | ✔   |   ✗   |
-| PARTY.DAT     | ✔   |   ✗   |
+| PARTY.DAT     | ✔   |   ✔   |
 | PIC1.RSC      | ✔   |   ✗   |
 | PILLAR.PPR    | ✗   |   ✗   |
 | PORTS.RSC     | ✔   |   ✗   |

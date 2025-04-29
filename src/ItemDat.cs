@@ -78,7 +78,7 @@ namespace iiAethra
             }
         }
 
-        private void WriteItem(BinaryWriter bw, Item item)
+        public void WriteItem(BinaryWriter bw, Item item)
         {
             bw.Write(item.Id);
             bw.Write(Utils.ConvertToReal48(item.Cost));
