@@ -17,13 +17,13 @@ iiAethra is a C# library supporting the modification of files relating to The Ae
 | FRONTS.PIC    | ✔   |   ✗   |
 | GAME.EXE      | ✗   |   ✗   |
 | GAME.OVR      | ✗   |   ✗   |
-| ICONS.PIC     | ✗   |   ✗   | Multiple image sizes
+| ICONS.PIC     | ✔   |   ✗   | Multiple image sizes
 | INFO1.DAT     | ✔   |   ✔   | Malformed file - writing back the original data fails
 | INFO2.DAT     | ✔   |   ✔   |
 | ITEM.DAT      | ✔   |   ✔   |
 | MAP.RSC       | ✗   |   ✗   |
 | MAPS.PIC      | ✔   |   ✗   |
-| MONPIC.PIC    | ✗   |   ✗   | Multiple image sizes
+| MONPIC.PIC    | ✔   |   ✗   | Multiple image sizes
 | NMONSTER.DAT  | ✔   |   ✔   |
 | OPEN.PPC      | ✔   |   ✗   |
 | PARCH.PIC     | ✔   |   ✗   |
