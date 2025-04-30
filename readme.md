@@ -9,32 +9,32 @@ iiAethra is a C# library supporting the modification of files relating to The Ae
 | AETHRA.CFG    | ✔   |   ✔   |
 | C1.RSC        | ✗   |   ✗   |
 | C2.RSC        | ✗   |   ✗   |
-| CHARPIC.DAT   | ✔   |   ✗   |
+| CHARPIC.DAT   | ✔   |   ✔   |
 | D1.RSC        | ✗   |   ✗   |
-| DRAGONS.PIC   | ✔   |   ✗   |
+| DRAGONS.PIC   | ✔   |   ✔   |
 | ENCNTER.DAT   | ✔   |   ✔   |
-| FLOOR.PIC     | ✔   |   ✗   |
-| FRONTS.PIC    | ✔   |   ✗   |
+| FLOOR.PIC     | ✔   |   ✔   |
+| FRONTS.PIC    | ✔   |   ✔   |
 | GAME.EXE      | ✗   |   ✗   |
 | GAME.OVR      | ✗   |   ✗   |
-| ICONS.PIC     | ✔   |   ✗   | Multiple image sizes
+| ICONS.PIC     | ✔   |   ✔   | Multiple image sizes
 | INFO1.DAT     | ✔   |   ✔   | Malformed file - writing back the original data fails
 | INFO2.DAT     | ✔   |   ✔   |
 | ITEM.DAT      | ✔   |   ✔   |
 | MAP.RSC       | ✗   |   ✗   |
-| MAPS.PIC      | ✔   |   ✗   |
-| MONPIC.PIC    | ✔   |   ✗   | Multiple image sizes
+| MAPS.PIC      | ✔   |   ✔   |
+| MONPIC.PIC    | ✔   |   ✔   | Multiple image sizes
 | NMONSTER.DAT  | ✔   |   ✔   |
-| OPEN.PPC      | ✔   |   ✗   |
-| PARCH.PIC     | ✔   |   ✗   |
+| OPEN.PPC      | ✔   |   ✔   |
+| PARCH.PIC     | ✔   |   ✔   |
 | PARTY.DAT     | ✔   |   ✔   |
-| PIC1.RSC      | ✔   |   ✗   |
+| PIC1.RSC      | ✔   |   ✔   |
 | PILLAR.PPR    | ✗   |   ✗   |
-| PORTS.RSC     | ✔   |   ✗   |
+| PORTS.RSC     | ✔   |   ✔   |
 | ROS.RSC       | ✔   |   ✗   |
 | SAVEGAME.DAT  | ✔   |   ✗   |
-| SPECIALS.PIC  | ✔   |   ✗   |
-| SPEFFS.DAT    | ✔   |   ✗   |
+| SPECIALS.PIC  | ✔   |   ✔   |
+| SPEFFS.DAT    | ✔   |   ✔   |
 | STD.RSC       | ✔   |   ✗   | Some extracted files are malformed
 | STORES.DAT    | ✔   |   ✗   |
 | T1.RSC        | ✔   |   ✗   |
