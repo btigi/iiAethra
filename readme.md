@@ -36,7 +36,7 @@ iiAethra is a C# library supporting the modification of files relating to The Ae
 | SPECIALS.PIC  | ✔   |   ✔   |
 | SPEFFS.DAT    | ✔   |   ✔   |
 | STD.RSC       | ✔   |   ✗   | Some extracted files are malformed
-| STORES.DAT    | ✔   |   ✗   |
+| STORES.DAT    | ✔   |   ✔   |
 | T1.RSC        | ✔   |   ✗   |
 | TASKDESC.DAT  | ✗   |   ✗   | Malformed file
 | TREE.DAT      | ✗   |   ✗   | Malformed file
