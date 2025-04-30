@@ -31,7 +31,7 @@ iiAethra is a C# library supporting the modification of files relating to The Ae
 | PIC1.RSC      | ✔   |   ✔   |
 | PILLAR.PPR    | ✗   |   ✗   |
 | PORTS.RSC     | ✔   |   ✔   |
-| ROS.RSC       | ✔   |   ✗   |
+| ROS.RSC       | ✔   |   ✔   |
 | SAVEGAME.DAT  | ✔   |   ✗   |
 | SPECIALS.PIC  | ✔   |   ✔   |
 | SPEFFS.DAT    | ✔   |   ✔   |
