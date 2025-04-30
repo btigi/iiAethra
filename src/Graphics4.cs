@@ -8,9 +8,9 @@ namespace iiAethra
         private readonly string[] palette =
         [
             "#FF00FF", "#0000A8", "#00A800", "#00A8FC",
-           "#A85454", "#FCA800", "#A85400", "#A8A8A8",
-           "#545454", "#5454FC", "#54FC54", "#000000",
-           "#FC5454", "#FCA8A8", "#FCFC00", "#FCFCFC"
+            "#A85454", "#FCA800", "#A85400", "#A8A8A8",
+            "#545454", "#5454FC", "#54FC54", "#000000",
+            "#FC5454", "#FCA8A8", "#FCFC00", "#FCFCFC"
         ];
 
         public List<Image> Read(string filename, List<(int width, int height, int count)> imageSizes)
@@ -77,6 +77,62 @@ namespace iiAethra
             }
 
             return rgbaData;
+        }
+
+        public void Write(List<Image> images, string filename)
+        {
+            using var fs = new FileStream(filename, FileMode.Create, FileAccess.Write);
+            using var bw = new BinaryWriter(fs);
+
+            foreach (var image in images)
+            {
+                var pixelData = new byte[image.Width * image.Height / 2]; // Each byte encodes two pixels
+                var rgbaData = new Rgba32[image.Width * image.Height];
+
+                var pixelIndex = 0;
+                image.CloneAs<Rgba32>().CopyPixelDataTo(rgbaData); // Copy pixel data to rgbaData
+                for (int row = image.Height - 1; row >= 0; row--) // Top to bottom
+                {
+                    for (int col = 0; col < image.Width; col += 2) // Two pixels per byte
+                    {
+                        int leftIndex = row * image.Width + col;
+                        int rightIndex = leftIndex + 1;
+
+                        byte leftPixel = FindClosestPaletteIndex(rgbaData[leftIndex]);
+                        byte rightPixel = col + 1 < image.Width ? FindClosestPaletteIndex(rgbaData[rightIndex]) : (byte)0;
+
+                        pixelData[pixelIndex++] = (byte)((leftPixel << 4) | rightPixel);
+                    }
+                }
+
+                bw.Write(pixelData);
+            }
+        }
+
+        private byte FindClosestPaletteIndex(Rgba32 color)
+        {
+            byte closestIndex = 0;
+            int closestDistance = int.MaxValue;
+
+            for (byte i = 0; i < palette.Length; i++)
+            {
+                var paletteColor = palette[i];
+                int r = Convert.ToInt32(paletteColor.Substring(1, 2), 16);
+                int g = Convert.ToInt32(paletteColor.Substring(3, 2), 16);
+                int b = Convert.ToInt32(paletteColor.Substring(5, 2), 16);
+
+                int distance = (color.R - r) * (color.R - r) +
+                               (color.G - g) * (color.G - g) +
+                               (color.B - b) * (color.B - b);
+
+                if (distance < closestDistance)
+                {
+                    closestDistance = distance;
+                    closestIndex = i;
+                }
+            }
+
+            return closestIndex;
         }
     }
 }
