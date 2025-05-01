@@ -50,6 +50,52 @@
 
             return saveGam;
         }
+
+        public void Write(SaveGame saveGam, string filename)
+        {
+            using var fs = new FileStream(filename, FileMode.Create, FileAccess.Write);
+            using var bw = new BinaryWriter(fs);
+
+            bw.Write(saveGam.BeaconSpellActive);
+            bw.Write(saveGam.WorldMapSector);
+            bw.Write(saveGam.Date);
+            bw.Write(saveGam.PartyWorldMapSubSectorXCoord);
+            bw.Write(saveGam.PartyWorldMapSubSectorYCoord);
+            bw.Write(saveGam.MageLightSpellTimeRemaining);
+            bw.Write(saveGam.BeaconSpellPartyWorldMapSubSectorXCoord);
+            bw.Write(saveGam.BeaconSpellPartyWorldMapSubSectorYCoord);
+            bw.Write(saveGam.BeaconSpellWorldMapSubSector);
+            bw.Write(saveGam.BeaconSpellWorldMapSubSectorXCoord);
+            bw.Write(saveGam.BeaconSpellWorldMapSubSectorYCoord);
+            bw.Write(saveGam.WorldMapSubSectorXCoord);
+            bw.Write(saveGam.WorldMapSubSectorYCoord);
+            bw.Write(saveGam.DungeonMapSubSectorXCoord);
+            bw.Write(saveGam.DungeonMapSubSectorYCoord);
+            bw.Write(saveGam.CityMapSubSectorXCoord);
+            bw.Write(saveGam.CityMapSubSectorYCoord);
+            bw.Write(saveGam.ConjureCausewaySpellTimeRemaining);
+            bw.Write(saveGam.PartyCityMapSubSectorXCoord);
+            bw.Write(saveGam.PartyCityMapSubSectorYCoord);
+            bw.Write(saveGam.PartyDungeonMapSubSectorXCoord);
+            bw.Write(saveGam.PartyDungeonMapSubSectorYCoord);
+            bw.Write(saveGam.Unknown);
+            bw.Write(saveGam.EyesOfTheFelineSpellTimeRemaining);
+            bw.Write(saveGam.OldVizierQuestStatus);
+            bw.Write(saveGam.OracleGemQuestStatus);
+            bw.Write(saveGam.DwarfKingQuestStatus);
+            bw.Write(saveGam.DwarfPrisonerQuestStatus);
+            bw.Write(saveGam.DwarfPrisonerRewardQuestStatus);
+            bw.Write(saveGam.ThiefQuestStatus);
+            bw.Write(saveGam.LetterQuestStatus);
+            bw.Write(saveGam.ProphecyQuestStatus);
+            bw.Write(saveGam.MarshQuestStatus);
+            bw.Write(saveGam.GuardianQuestStatus);
+            bw.Write(saveGam.Time);
+            bw.Write(saveGam.CarnageOff);
+            bw.Write(saveGam.GroupRunOff);
+            bw.Write(saveGam.DungeonMapSector);
+            bw.Write(saveGam.CityMapSector);
+        }
     }
 
     public class SaveGame
