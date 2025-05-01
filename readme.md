@@ -32,12 +32,12 @@ iiAethra is a C# library supporting the modification of files relating to The Ae
 | PILLAR.PPR    | ✗   |   ✗   |
 | PORTS.RSC     | ✔   |   ✔   |
 | ROS.RSC       | ✔   |   ✔   |
-| SAVEGAME.DAT  | ✔   |   ✗   |
+| SAVEGAME.DAT  | ✔   |   ✔   |
 | SPECIALS.PIC  | ✔   |   ✔   |
 | SPEFFS.DAT    | ✔   |   ✔   |
 | STD.RSC       | ✔   |   ✗   | Some extracted files are malformed
 | STORES.DAT    | ✔   |   ✔   |
-| T1.RSC        | ✔   |   ✗   |
+| T1.RSC        | ✔   |   ✔   |
 | TASKDESC.DAT  | ✗   |   ✗   | Malformed file
 | TREE.DAT      | ✗   |   ✗   | Malformed file
 

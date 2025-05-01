@@ -60,6 +60,48 @@
             }
             return result;
         }
+
+        public void Write(List<T1RscRecord> records, string filename)
+        {
+            using var fs = new FileStream(filename, FileMode.Create, FileAccess.Write);
+            using var bw = new BinaryWriter(fs);
+            foreach (var record in records)
+            {
+                foreach (var item in record.Items)
+                {
+                    bw.Write(item.ItemId);
+                    bw.Write(item.ChargesRemaining);
+                    bw.Write(item.XCoordinate);
+                    bw.Write(item.YCoordinate);
+                    bw.Write(item.Identified);
+                }
+                bw.Write((short)record.Items.Length); // total number of items
+
+                foreach (var element in record.InteractiveElements)
+                {
+                    bw.Write(element.XCoordinate);
+                    bw.Write(element.YCoordinate);
+                    bw.Write(element.ElementIndex);
+                }
+                bw.Write((byte)record.InteractiveElements.Length); // total number of interactive elements
+
+                foreach (var floorItem in record.FloorItems)
+                {
+                    bw.Write(floorItem.XCoordinate);
+                    bw.Write(floorItem.YCoordinate);
+                    bw.Write(floorItem.IconOffset);
+                }
+                bw.Write((byte)record.FloorItems.Length); // total number of floor items
+
+                foreach (var interactedElement in record.InteractedElementRecords)
+                {
+                    bw.Write(interactedElement.XCoordinate);
+                    bw.Write(interactedElement.YCoordinate);
+                    bw.Write(interactedElement.OverlayOffset);
+                }
+                bw.Write((short)record.InteractedElementRecords.Length); // total number of interacted elements
+            }
+        }
     }
 
     public class T1RscRecord
