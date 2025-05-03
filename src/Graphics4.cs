@@ -1,7 +1,7 @@
 ﻿using SixLabors.ImageSharp;
 using SixLabors.ImageSharp.PixelFormats;
 
-namespace iiAethra
+namespace ii.Aethra
 {
     public class Graphics4
     {

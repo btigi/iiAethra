@@ -1,4 +1,4 @@
-﻿namespace iiAethra
+﻿namespace ii.Aethra
 {
     public static class Utils
     {

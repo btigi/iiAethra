@@ -1,7 +1,7 @@
 ﻿using System.Reflection;
 using System.Text;
 
-namespace iiAethra
+namespace ii.Aethra
 {
     public class TaskDesc
     {

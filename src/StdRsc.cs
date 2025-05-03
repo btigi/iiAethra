@@ -1,4 +1,4 @@
-﻿namespace iiAethra
+﻿namespace ii.Aethra
 {
     public class StdRsc
     {
