@@ -8,16 +8,21 @@
     <Nullable>enable</Nullable>
     <Copyright>Copyright ©  2025</Copyright>
     <Title>ii.Aethra</Title>
-    <Version>0.8.0.0</Version>
+    <Version>0.8.0.1</Version>
     <Authors>iggti</Authors>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
     <RepositoryUrl>https://github.com/btigi/iiAethra</RepositoryUrl>
     <Description>C# library to facilitate editing of the 1994 CRPG The Aethra Chronicles.</Description>
     <PackageTags>Aethra Chronicles</PackageTags>
+    <PackageReadmeFile>README.md</PackageReadmeFile>
   </PropertyGroup>
 
   <ItemGroup>
     <PackageReference Include="SixLabors.ImageSharp" Version="3.1.7" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="..\readme.md" Pack="true" PackagePath="\"/>
   </ItemGroup>
 
 </Project>
