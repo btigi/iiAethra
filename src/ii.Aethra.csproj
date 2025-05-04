@@ -14,7 +14,7 @@
     <RepositoryUrl>https://github.com/btigi/iiAethra</RepositoryUrl>
     <Description>C# library to facilitate editing of the 1994 CRPG The Aethra Chronicles.</Description>
     <PackageTags>Aethra Chronicles</PackageTags>
-    <PackageReadmeFile>README.md</PackageReadmeFile>
+    <PackageReadmeFile>readme.md</PackageReadmeFile>
   </PropertyGroup>
 
   <ItemGroup>
