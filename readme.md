@@ -7,10 +7,10 @@ iiAethra is a C# library supporting the modification of files relating to The Ae
 | Name          | Read | Write | Comment |
 |---------------|:----:|-------|:--------|
 | AETHRA.CFG    | ✔   |   ✔   |
-| C1.RSC        | ✗   |   ✗   |
-| C2.RSC        | ✗   |   ✗   |
+| C1.RSC        | ✔   |   ✔   | City/world visual tiles (PIC1 indices), 36 screens
+| C2.RSC        | ✔   |   ✔   | City/world gameplay layers, 36 screens
 | CHARPIC.DAT   | ✔   |   ✔   |
-| D1.RSC        | ✗   |   ✗   |
+| D1.RSC        | ✔   |   ✔   | Dungeon tile planes (FLOOR.PIC), 108 screens
 | DRAGONS.PIC   | ✔   |   ✔   |
 | ENCNTER.DAT   | ✔   |   ✔   |
 | FLOOR.PIC     | ✔   |   ✔   |
@@ -21,14 +21,14 @@ iiAethra is a C# library supporting the modification of files relating to The Ae
 | INFO1.DAT     | ✔   |   ✔   | Malformed file - writing back the original data fails
 | INFO2.DAT     | ✔   |   ✔   |
 | ITEM.DAT      | ✔   |   ✔   |
-| MAP.RSC       | ✗   |   ✗   |
+| MAP.RSC       | ✔   |   ✔   | Dungeon fog-of-war, 99 screens
 | MAPS.PIC      | ✔   |   ✔   |
 | MONPIC.PIC    | ✔   |   ✔   | Multiple image sizes
 | NMONSTER.DAT  | ✔   |   ✔   |
 | OPEN.PPC      | ✔   |   ✔   |
 | PARCH.PIC     | ✔   |   ✔   |
 | PARTY.DAT     | ✔   |   ✔   |
-| PIC1.RSC      | ✔   |   ✔   |
+| PIC1.RSC      | ✔   |   ✔   | City/world map tiles via Graphics4, 2160 × 16×16
 | PILLAR.PPR    | ✗   |   ✗   |
 | PORTS.RSC     | ✔   |   ✔   |
 | ROS.RSC       | ✔   |   ✔   |
