@@ -1,4 +1,5 @@
 ﻿using System.Text;
+using ii.Aethra.Model;
 
 namespace ii.Aethra
 {
@@ -95,22 +96,5 @@ namespace ii.Aethra
                 }
             }
         }
-
     }
-
-    public class StoreRecord
-    {
-        public string Name { get; set; } = string.Empty;
-        public List<ItemRecord> Items { get; set; } = new List<ItemRecord>();
-    }
-
-    public class ItemRecord
-    {
-        public string Name { get; set; } = string.Empty;
-        public byte[] Unknown { get; set; } = new byte[18];
-        public double Cost { get; set; }
-        public Int16 Id { get; set; }
-        public Int16 Count { get; set; }
-    }
-
 }

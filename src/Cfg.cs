@@ -1,4 +1,5 @@
 ﻿using System.Text;
+using ii.Aethra.Model;
 
 namespace ii.Aethra
 {
@@ -55,19 +56,5 @@ namespace ii.Aethra
                 return false;
             }
         }
-    }
-
-    public class CfgFile
-    {
-        public Int16 Unknown { get; set; }
-        public byte MusicStatus { get; set; }
-        public byte SoundStatus { get; set; }
-        public List<SaveGameStatus> SaveGameStatus { get; set; } = [];
-    }
-
-    public class SaveGameStatus
-    {
-        public string SaveGameName { get; set; } = string.Empty;
-        public byte[] Unknown { get; set; } = new byte[59];
     }
 }

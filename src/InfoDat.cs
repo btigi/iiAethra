@@ -1,4 +1,5 @@
 ﻿using System.Text;
+using ii.Aethra.Model;
 
 namespace ii.Aethra
 {
@@ -54,11 +55,5 @@ namespace ii.Aethra
                 }
             }
         }
-    }
-
-    public class InfoDatRecord
-    {
-        public string Title { get; set; } = string.Empty;
-        public List<string> Lines { get; set; } = new List<string>();
     }
 }

@@ -1,4 +1,6 @@
-﻿namespace ii.Aethra
+﻿using ii.Aethra.Model;
+
+namespace ii.Aethra
 {
     public class T1Rsc
     {
@@ -102,43 +104,5 @@
                 bw.Write((short)record.InteractedElementRecords.Length); // total number of interacted elements
             }
         }
-    }
-
-    public class T1RscRecord
-    {
-        public T1ItemRecord[] Items { get; set; } = new T1ItemRecord[1000];
-        public T1InteractiveElementRecord[] InteractiveElements { get; set; } = new T1InteractiveElementRecord[100];
-        public T1FloorItemRecord[] FloorItems { get; set; } = new T1FloorItemRecord[100];
-        public T1InteractedElementRecord[] InteractedElementRecords { get; set; } = new T1InteractedElementRecord[400];
-    }
-
-    public class T1ItemRecord
-    {
-        public Int16 ItemId { get; set; }
-        public byte ChargesRemaining { get; set; }
-        public byte XCoordinate { get; set; }
-        public byte YCoordinate { get; set; }
-        public byte Identified { get; set; }
-    }
-
-    public class T1InteractiveElementRecord
-    {
-        public byte XCoordinate { get; set; }
-        public byte YCoordinate { get; set; }
-        public Int16 ElementIndex { get; set; }
-    }
-
-    public class T1FloorItemRecord
-    {
-        public byte XCoordinate { get; set; }
-        public byte YCoordinate { get; set; }
-        public Int16 IconOffset { get; set; }
-    }
-
-    public class T1InteractedElementRecord
-    {
-        public byte XCoordinate { get; set; }
-        public byte YCoordinate { get; set; }
-        public Int16 OverlayOffset { get; set; }
     }
 }

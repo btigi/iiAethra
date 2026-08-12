@@ -1,5 +1,6 @@
 ﻿using System.Reflection;
 using System.Text;
+using ii.Aethra.Model;
 
 namespace ii.Aethra
 {
@@ -76,11 +77,5 @@ namespace ii.Aethra
             }
             return result;
         }
-    }
-
-    public class TaskDescRecord
-    {
-        public string Title { get; set; } = string.Empty;
-        public List<string> Lines { get; set; } = new List<string>();
     }
 }
