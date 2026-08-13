@@ -2,17 +2,19 @@ using ii.Aethra.Model;
 
 namespace ii.Aethra
 {
-    // Dungeon map tile / cell data.
-    // 108 screens (12 sectors × 9) of 24×16 cells stored column-major, with 7 layers
-    // Layer 0 holds the floor tiles (FLOOR.PIC) - the tile id is stored in either the  low or high byte of each Int16
-    // Other layers hold overlays, objects and trigger-related stuff
+    // Dungeon map tile data.
+    // 108 screens (12 sectors × 9) of 24×16 cells stored column-wise, with 6 layers
     public class D1Rsc
     {
         public const int ScreenCount = 108;
         public const int SectorCount = 12;
-        public const int LayerCount = 7;
-        public const int ScreenSizeBytes = MapLayout.TilesPerScreen * LayerCount * sizeof(short) + 1; // 5377
+        public const int LayerCount = 6;
+        public const int HeaderBytes = 9;
+        public const int TrailingBytes = 760;
+        public const int ScreenSizeBytes = HeaderBytes + MapLayout.TilesPerScreen * LayerCount * sizeof(short) + TrailingBytes; // 5377
         public const int ExpectedFileSize = ScreenCount * ScreenSizeBytes; // 580716
+
+        public const int DungeonTileBase = 1440;
 
         public List<D1RscScreen> Read(string filename)
         {
@@ -26,7 +28,11 @@ namespace ii.Aethra
             var result = new List<D1RscScreen>(ScreenCount);
             while (br.BaseStream.Position < br.BaseStream.Length)
             {
-                var screen = new D1RscScreen();
+                var screen = new D1RscScreen
+                {
+                    Header = br.ReadBytes(HeaderBytes)
+                };
+
                 for (var layer = 0; layer < LayerCount; layer++)
                 {
                     for (var x = 0; x < MapLayout.ScreenWidth; x++)
@@ -38,7 +44,7 @@ namespace ii.Aethra
                     }
                 }
 
-                screen.Padding = br.ReadByte();
+                screen.Trailing = br.ReadBytes(TrailingBytes);
                 result.Add(screen);
             }
 
@@ -51,6 +57,7 @@ namespace ii.Aethra
             using var bw = new BinaryWriter(fs);
             foreach (var screen in screens)
             {
+                bw.Write(screen.Header);
                 for (var layer = 0; layer < LayerCount; layer++)
                 {
                     for (var x = 0; x < MapLayout.ScreenWidth; x++)
@@ -62,15 +69,8 @@ namespace ii.Aethra
                     }
                 }
 
-                bw.Write(screen.Padding);
+                bw.Write(screen.Trailing);
             }
-        }
-
-        public static byte GetSignificantByte(short value)
-        {
-            var unsigned = unchecked((ushort)value);
-            var low = (byte)(unsigned & 0xFF);
-            return low != 0 ? low : (byte)((unsigned >> 8) & 0xFF);
         }
     }
 }

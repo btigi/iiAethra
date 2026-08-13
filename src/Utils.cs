@@ -2,7 +2,7 @@
 {
     public static class Utils
     {
-        public static double ConvertFromReal48(byte[] real48)
+        internal static double ConvertFromReal48(byte[] real48)
         {
             // real48[0] == 0 is represents the value 0.
             if (real48[0] == 0)
@@ -42,7 +42,7 @@
             return (mantissa) * Math.Pow(2.0, exponent);
         }
 
-        public static byte[] ConvertToReal48(double value)
+        internal static byte[] ConvertToReal48(double value)
         {
             // Handle zero case  
             if (value == 0.0)
@@ -87,6 +87,5 @@
 
             return real48;
         }
-
     }
 }

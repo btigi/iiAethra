@@ -1,6 +1,4 @@
-﻿using ii.Aethra.Model;
-
-namespace ii.Aethra
+﻿namespace ii.Aethra.Model
 {
     public class T1RscRecord
     {

@@ -10,7 +10,7 @@ iiAethra is a C# library supporting the modification of files relating to The Ae
 | C1.RSC        | ✔   |   ✔   | City/world visual tiles (PIC1 indices), 36 screens
 | C2.RSC        | ✔   |   ✔   | City/world gameplay layers, 36 screens
 | CHARPIC.DAT   | ✔   |   ✔   |
-| D1.RSC        | ✔   |   ✔   | Dungeon tile planes (FLOOR.PIC), 108 screens
+| D1.RSC        | ✔   |   ✔   | Dungeon layout (PIC1 indices from 1440), 108 screens
 | DRAGONS.PIC   | ✔   |   ✔   |
 | ENCNTER.DAT   | ✔   |   ✔   |
 | FLOOR.PIC     | ✔   |   ✔   |
@@ -28,7 +28,7 @@ iiAethra is a C# library supporting the modification of files relating to The Ae
 | OPEN.PPC      | ✔   |   ✔   |
 | PARCH.PIC     | ✔   |   ✔   |
 | PARTY.DAT     | ✔   |   ✔   |
-| PIC1.RSC      | ✔   |   ✔   | City/world map tiles via Graphics4, 2160 × 16×16
+| PIC1.RSC      | ✔   |   ✔   | Map tiles via Graphics4
 | PILLAR.PPR    | ✗   |   ✗   |
 | PORTS.RSC     | ✔   |   ✔   |
 | ROS.RSC       | ✔   |   ✔   |
