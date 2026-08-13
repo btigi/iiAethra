@@ -39,7 +39,7 @@ iiAethra is a C# library supporting the modification of files relating to The Ae
 | STORES.DAT    | ✔   |   ✔   |
 | T1.RSC        | ✔   |   ✔   |
 | TASKDESC.DAT  | ✗   |   ✗   | Malformed file
-| TREE.DAT      | ✗   |   ✗   | Malformed file
+| TREE.DAT      | ✔   |   ✔   | Combat scenery sprites
 
 Note: Real48 round-tripping is currently inaccurate.
 

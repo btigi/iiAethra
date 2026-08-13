@@ -82,8 +82,11 @@ namespace ii.Aethra
         public void Write(List<Image> images, string filename)
         {
             using var fs = new FileStream(filename, FileMode.Create, FileAccess.Write);
-            using var bw = new BinaryWriter(fs);
+            Write(images, fs);
+        }
 
+        public void Write(List<Image> images, Stream stream)
+        {
             foreach (var image in images)
             {
                 var pixelData = new byte[image.Width * image.Height / 2]; // Each byte encodes two pixels
@@ -105,7 +108,7 @@ namespace ii.Aethra
                     }
                 }
 
-                bw.Write(pixelData);
+                stream.Write(pixelData);
             }
         }
 
