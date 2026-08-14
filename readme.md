@@ -31,7 +31,7 @@ iiAethra is a C# library supporting the modification of files relating to The Ae
 | PIC1.RSC      | ✗   |   ✗   | Map tiles via Graphics4
 | PILLAR.PPR    | ✗   |   ✗   |
 | PORTS.RSC     | ✔   |   ✔   |
-| ROS.RSC       | ✗   |   ✗   |
+| ROS.RSC       | ✔   |   ✔   | NPC roster, 64 characters
 | SAVEGAME.DAT  | ✔   |   ✔   |
 | SPECIALS.PIC  | ✔   |   ✔   |
 | SPEFFS.DAT    | ✗   |   ✗   |

@@ -25,11 +25,11 @@ namespace ii.Aethra
 
                 var raceLength = br.ReadByte();
                 var race = br.ReadBytes(MaxPartyMemberRaceLength);
-                record.Race = Encoding.UTF8.GetString(name.Take(raceLength).ToArray());
+                record.Race = Encoding.UTF8.GetString(race.Take(raceLength).ToArray());
 
                 var levelDescriptionLength = br.ReadByte();
                 var levelDescription = br.ReadBytes(MaxPartyMemberLevelDescriptionLength);
-                record.LevelDescription = Encoding.UTF8.GetString(name.Take(levelDescriptionLength).ToArray());
+                record.LevelDescription = Encoding.UTF8.GetString(levelDescription.Take(levelDescriptionLength).ToArray());
 
                 record.ActiveStatus = br.ReadInt16();
                 record.Level = br.ReadInt16();
