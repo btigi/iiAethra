@@ -25,16 +25,16 @@ iiAethra is a C# library supporting the modification of files relating to The Ae
 | MAPS.PIC      | ✔   |   ✔   |
 | MONPIC.PIC    | ✔   |   ✔   | Multiple image sizes
 | NMONSTER.DAT  | ✔   |   ✔   |
-| OPEN.PPC      | ✔   |   ✔   |
+| OPEN.PPC      | ✗   |   ✗   |
 | PARCH.PIC     | ✔   |   ✔   |
 | PARTY.DAT     | ✔   |   ✔   |
-| PIC1.RSC      | ✔   |   ✔   | Map tiles via Graphics4
+| PIC1.RSC      | ✗   |   ✗   | Map tiles via Graphics4
 | PILLAR.PPR    | ✗   |   ✗   |
 | PORTS.RSC     | ✔   |   ✔   |
-| ROS.RSC       | ✔   |   ✔   |
+| ROS.RSC       | ✗   |   ✗   |
 | SAVEGAME.DAT  | ✔   |   ✔   |
 | SPECIALS.PIC  | ✔   |   ✔   |
-| SPEFFS.DAT    | ✔   |   ✔   |
+| SPEFFS.DAT    | ✗   |   ✗   |
 | STD.RSC       | ✔   |   ✗   | Some extracted files are malformed
 | STORES.DAT    | ✔   |   ✔   |
 | T1.RSC        | ✔   |   ✔   |
