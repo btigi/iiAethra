@@ -29,7 +29,7 @@ iiAethra is a C# library supporting the modification of files relating to The Ae
 | PARCH.PIC     | ✔   |   ✔   |
 | PARTY.DAT     | ✔   |   ✔   |
 | PIC1.RSC      | ✔   |   ✔   | Map tiles via Graphics4
-| PILLAR.PPR    | ✗   |   ✗   |
+| PILLAR.PPR    | ✔   |   ✔   | Title-screen framing
 | PORTS.RSC     | ✔   |   ✔   |
 | ROS.RSC       | ✔   |   ✔   | NPC roster, 64 characters
 | SAVEGAME.DAT  | ✔   |   ✔   |
