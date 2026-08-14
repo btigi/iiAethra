@@ -2,7 +2,7 @@ using ii.Aethra.Model;
 
 namespace ii.Aethra
 {
-    // City / overworld tile maps
+    // Overworld tile maps
     // 36 screens (4 sectors × 9) of 24×16 cells. Graphics are column-wise
     // 4 sectors tile a 6×6-screen world in a 2×2 arrangement (sector 0 top-left, 1 top-right, 2 bottom-left, 3 bottom-right)
     // Each screen has 4 layers of int16 values.

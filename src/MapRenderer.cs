@@ -30,6 +30,13 @@ namespace ii.Aethra
             return RenderC1(screens, tiles);
         }
 
+        public List<Image> RenderC2(string pic1Filename, string c2Filename)
+        {
+            var tiles = LoadPic1Tiles(pic1Filename);
+            var screens = new C2Rsc().Read(c2Filename);
+            return RenderC2(screens, tiles);
+        }
+
         public List<Image> RenderD1(string pic1Filename, string d1Filename)
         {
             var tiles = LoadPic1Tiles(pic1Filename);
@@ -44,7 +51,21 @@ namespace ii.Aethra
             foreach (var screen in screens)
             {
                 var image = CreateScreenImage();
-                DrawC1Screen(image, screen, tiles, 0, 0);
+                DrawPic1Screen(image, C1Rsc.LayerCount, screen.GetPic1Index, tiles, 0, 0, grassBase: 0);
+                result.Add(image);
+            }
+
+            return result;
+        }
+
+        public List<Image> RenderC2(IList<C2RscScreen> screens, IList<Image> pic1Tiles)
+        {
+            var tiles = ToRgba32(pic1Tiles);
+            var result = new List<Image>(screens.Count);
+            foreach (var screen in screens)
+            {
+                var image = CreateScreenImage();
+                DrawPic1Screen(image, C2Rsc.LayerCount, screen.GetPic1Index, tiles, 0, 0, grassBase: 0);
                 result.Add(image);
             }
 
@@ -108,6 +129,8 @@ namespace ii.Aethra
             return result;
         }
 
+        public Image StitchC2World(IList<Image> screens) => StitchC1World(screens);
+
         public Image StitchC1World(IList<Image> screens)
         {
             var world = new Image<Rgba32>(SectorWidthPx * C1WorldSectorsWide, SectorHeightPx * C1WorldSectorsHigh, new Rgba32(0, 0, 0, 255));
@@ -134,7 +157,7 @@ namespace ii.Aethra
 
         private static Image<Rgba32> CreateScreenImage() => new(ScreenWidthPx, ScreenHeightPx, new Rgba32(0, 0, 0, 255));
 
-        private static void DrawC1Screen(Image<Rgba32> image, C1RscScreen screen, IList<Image<Rgba32>> tiles, int originX, int originY)
+        private static void DrawPic1Screen(Image<Rgba32> image, int layerCount, Func<int, int, int, int> getPic1Index, IList<Image<Rgba32>> tiles, int originX, int originY, int grassBase)
         {
             for (var tileY = 0; tileY < MapLayout.ScreenHeight; tileY++)
             {
@@ -142,12 +165,12 @@ namespace ii.Aethra
                 {
                     var destX = originX + tileX * TileSize;
                     var destY = originY + tileY * TileSize;
-                    var grass = GrassFirst + (tileX * 7 + tileY * 13) % GrassCount;
+                    var grass = grassBase + GrassFirst + (tileX * 7 + tileY * 13) % GrassCount;
                     BlitTile(image, tiles, grass, destX, destY);
 
-                    for (var layer = 0; layer < C1Rsc.LayerCount; layer++)
+                    for (var layer = 0; layer < layerCount; layer++)
                     {
-                        BlitTile(image, tiles, screen.GetPic1Index(layer, tileX, tileY), destX, destY);
+                        BlitTile(image, tiles, getPic1Index(layer, tileX, tileY), destX, destY);
                     }
                 }
             }

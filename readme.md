@@ -7,10 +7,10 @@ iiAethra is a C# library supporting the modification of files relating to The Ae
 | Name          | Read | Write | Comment |
 |---------------|:----:|-------|:--------|
 | AETHRA.CFG    | ✔   |   ✔   |
-| C1.RSC        | ✔   |   ✔   | City/world visual tiles (PIC1 indices), 36 screens
-| C2.RSC        | ✔   |   ✔   | City/world gameplay layers, 36 screens
+| C1.RSC        | ✔   |   ✔   | Overworld visual tiles (PIC1 indices), 36 screens
+| C2.RSC        | ✔   |   ✔   | City/town visual tiles (PIC1 indices), 36 screens, 4 sector headers
 | CHARPIC.DAT   | ✔   |   ✔   |
-| D1.RSC        | ✔   |   ✔   | Dungeon layout (PIC1 indices from 1440), 108 screens
+| D1.RSC        | ✔   |   ✔   | Dungeon layout (PIC1 indices from 1440), 108 screens, 12 sector headers
 | DRAGONS.PIC   | ✔   |   ✔   |
 | ENCNTER.DAT   | ✔   |   ✔   |
 | FLOOR.PIC     | ✔   |   ✔   |
@@ -22,7 +22,7 @@ iiAethra is a C# library supporting the modification of files relating to The Ae
 | INFO2.DAT     | ✔   |   ✔   |
 | ITEM.DAT      | ✔   |   ✔   |
 | MAP.RSC       | ✔   |   ✔   | Dungeon fog-of-war, 99 screens
-| MAPS.PIC      | ✔   |   ✔   |
+| MAPS.PIC      | ✔   |   ✔   | In-game map items
 | MONPIC.PIC    | ✔   |   ✔   | Multiple image sizes
 | NMONSTER.DAT  | ✔   |   ✔   |
 | OPEN.PPC      | ✗   |   ✗   |
@@ -69,7 +69,7 @@ var cfg = cfgReader.Read(Path.Combine(GamePath, "aethra.cfg"));
 
 
 
-// --- C1.RSC (city / outdoors)
+// --- C1.RSC (overworld / countryside)
 const string C1OutputPath = @"D:\data\Aethra\c1";
 Directory.CreateDirectory(C1OutputPath);
 
@@ -149,23 +149,53 @@ using (var writer = new StreamWriter(c1SummaryPath))
 
 
 
-// --- C2.RSC (raw data)
+// --- C2.RSC (city / towns)
 const string C2OutputPath = @"D:\data\Aethra\c2";
 Directory.CreateDirectory(C2OutputPath);
 
+var c2Images = renderer.RenderC2(Path.Combine(GamePath, "PIC1.RSC"), Path.Combine(GamePath, "C2.RSC"));
+
+for (var screenIndex = 0; screenIndex < c2Images.Count; screenIndex++)
+{
+    var sector = screenIndex / MapLayout.ScreensPerSector;
+    var screenInSector = screenIndex % MapLayout.ScreensPerSector;
+    var path = Path.Combine(C2OutputPath, $"C2_s{sector:D2}_{screenInSector:D2}_{screenIndex:D2}.png");
+    c2Images[screenIndex].SaveAsPng(path);
+}
+
+var c2Sectors = renderer.StitchSectors(c2Images, C2Rsc.SectorCount);
+for (var sector = 0; sector < c2Sectors.Count; sector++)
+{
+    var sectorPath = Path.Combine(C2OutputPath, $"C2_sector_{sector:D2}.png");
+    c2Sectors[sector].SaveAsPng(sectorPath);
+}
+
+var c2WorldImage = renderer.StitchC2World(c2Images);
+c2WorldImage.SaveAsPng(Path.Combine(C2OutputPath, "C2_world.png"));
+
+
+
+
+// --- C2.RSC (raw data)
 var c2Screens = new C2Rsc().Read(Path.Combine(GamePath, "C2.RSC"));
 
 var c2SummaryPath = Path.Combine(C2OutputPath, "C2_layers.txt");
 using (var writer = new StreamWriter(c2SummaryPath))
 {
     writer.WriteLine($"# C2.RSC layer dump — {c2Screens.Count} screens, {C2Rsc.LayerCount} layers");
-    writer.WriteLine("# raw values are gameplay flags");
-    writer.WriteLine("# screen sector screenInSector x y raw0 raw1 raw2");
+    writer.WriteLine("# raw values are 1-based PIC1 tile ids; pic1 is the layer 0 PIC1 index");
+    writer.WriteLine("# sector headers (9 bytes) are stored on the first screen of each sector");
+    writer.WriteLine("# screen sector screenInSector x y pic1 raw0 raw1 raw2 raw3");
     for (var screenIndex = 0; screenIndex < c2Screens.Count; screenIndex++)
     {
         var screen = c2Screens[screenIndex];
         var sector = screenIndex / MapLayout.ScreensPerSector;
         var screenInSector = screenIndex % MapLayout.ScreensPerSector;
+        if (screenInSector == 0)
+        {
+            writer.WriteLine($"# sector {sector} header {Convert.ToHexString(screen.Header)}");
+        }
+
         for (var tileY = 0; tileY < MapLayout.ScreenHeight; tileY++)
         {
             for (var tileX = 0; tileX < MapLayout.ScreenWidth; tileX++)
@@ -173,7 +203,7 @@ using (var writer = new StreamWriter(c2SummaryPath))
                 var any = false;
                 for (var layer = 0; layer < C2Rsc.LayerCount; layer++)
                 {
-                    if (screen.GetValue(layer, tileX, tileY) != 0)
+                    if (screen.GetTile(layer, tileX, tileY) != 0)
                     {
                         any = true;
                         break;
@@ -185,10 +215,10 @@ using (var writer = new StreamWriter(c2SummaryPath))
                     continue;
                 }
 
-                writer.Write($"{screenIndex}\t{sector}\t{screenInSector}\t{tileX}\t{tileY}");
+                writer.Write($"{screenIndex}\t{sector}\t{screenInSector}\t{tileX}\t{tileY}\t{screen.GetPic1Index(0, tileX, tileY)}");
                 for (var layer = 0; layer < C2Rsc.LayerCount; layer++)
                 {
-                    writer.Write($"\t{screen.GetValue(layer, tileX, tileY)}");
+                    writer.Write($"\t{screen.GetTile(layer, tileX, tileY)}");
                 }
 
                 writer.WriteLine();
