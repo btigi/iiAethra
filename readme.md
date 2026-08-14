@@ -28,14 +28,14 @@ iiAethra is a C# library supporting the modification of files relating to The Ae
 | OPEN.PPC      | ✗   |   ✗   |
 | PARCH.PIC     | ✔   |   ✔   |
 | PARTY.DAT     | ✔   |   ✔   |
-| PIC1.RSC      | ✗   |   ✗   | Map tiles via Graphics4
+| PIC1.RSC      | ✔   |   ✔   | Map tiles via Graphics4
 | PILLAR.PPR    | ✗   |   ✗   |
 | PORTS.RSC     | ✔   |   ✔   |
 | ROS.RSC       | ✔   |   ✔   | NPC roster, 64 characters
 | SAVEGAME.DAT  | ✔   |   ✔   |
 | SPECIALS.PIC  | ✔   |   ✔   |
 | SPEFFS.DAT    | ✗   |   ✗   |
-| STD.RSC       | ✔   |   ✗   | Some extracted files are malformed
+| STD.RSC       | ✔   |   ✗   | Sounds
 | STORES.DAT    | ✔   |   ✔   |
 | T1.RSC        | ✔   |   ✔   |
 | TASKDESC.DAT  | ✔   |   ✔   | Quest / dialog pages
